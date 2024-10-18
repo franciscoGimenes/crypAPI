@@ -17,31 +17,6 @@ A API oferece 10 chaves predefinidas, identificadas por números de `1` a `10`. 
 - **index.js**: Arquivo principal do servidor, onde a API está implementada.
 - **index.html**: Interface do usuário para interagir com a API.
 
-## Requisitos
-
-- Node.js
-- NPM (Node Package Manager)
-
-## Instalação
-
-1. Clone o repositório:
-   ```bash
-   git clone <URL do repositório>
-   cd <nome do repositório>
-   ```
-
-2. Instale as dependências:
-   ```bash
-   npm install
-   ```
-
-3. Crie um arquivo `.env` e adicione suas variáveis de ambiente, se necessário.
-
-4. Inicie o servidor:
-   ```bash
-   node index.js
-   ```
-
 ## Usando a API
 
 ### Criptografar Mensagem
