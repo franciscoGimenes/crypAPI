@@ -122,5 +122,5 @@ Contribuições são bem-vindas! Sinta-se à vontade para abrir um problema ou e
 
 ## Contato
 
-Para mais informações, entre em contato com [seu_email@example.com].
+Para mais informações, entre em contato com [f.gimenes1316@gmail.com][06.phas@gmail.com].
 
