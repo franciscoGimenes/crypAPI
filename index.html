@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>API de Criptografia</title>
+</head>
+
+<body>
+    <h1>Criptografar Mensagem</h1>
+    <textarea id="message" placeholder="Digite sua mensagem"></textarea>
+    <br>
+
+    <label for="keySelect">Escolha uma chave:</label>
+    <select id="keySelect">
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+        <option value="5">5</option>
+        <option value="6">6</option>
+        <option value="7">7</option>
+        <option value="8">8</option>
+        <option value="9">9</option>
+        <option value="10">10</option>
+    </select>
+
+    <br>
+    <button onclick="encryptMessage()">Criptografar</button>
+
+    <h2>Resultado da Criptografia</h2>
+    <p><strong>Mensagem Criptografada:</strong> <span id="encryptedData"></span></p>
+
+    <h1>Descriptografar Mensagem</h1>
+    <input type="text" id="decryptEncryptedData" placeholder="Digite a mensagem criptografada">
+    
+    <label for="decryptKeySelect">Escolha a chave:</label>
+    <select id="decryptKeySelect">
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+        <option value="5">5</option>
+        <option value="6">6</option>
+        <option value="7">7</option>
+        <option value="8">8</option>
+        <option value="9">9</option>
+        <option value="10">10</option>
+    </select>
+
+    <br>
+    <button onclick="decryptMessage()">Descriptografar</button>
+
+    <h2>Mensagem Descriptografada</h2>
+    <p id="decryptedMessage"></p>
+
+    <script>
+        // Defina sua chave de API
+        const API_KEY = 'abcdefg123456789'; // Use a mesma chave definida no servidor
+        const apiUrl = 'https://7aa64dd7-8b85-4e40-8227-f6109fa9a47d-00-3he3e491624h2.riker.replit.dev'; // URL da sua API
+
+        // Função para criptografar a mensagem
+        function encryptMessage() {
+            const message = document.getElementById('message').value;
+            const keyName = document.getElementById('keySelect').value;
+
+            fetch(`${apiUrl}/encrypt`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'x-api-key': API_KEY, // Adiciona a chave de API no cabeçalho
+                },
+                body: JSON.stringify({ message, keyName }),
+            })
+                .then(response => response.json())
+                .then(data => {
+                    document.getElementById('encryptedData').textContent = data.encryptedData;
+                })
+                .catch(error => console.error('Erro ao criptografar:', error));
+        }
+
+        // Função para descriptografar a mensagem
+        function decryptMessage() {
+            const encryptedData = document.getElementById('decryptEncryptedData').value;
+            const keyName = document.getElementById('decryptKeySelect').value;
+
+            fetch(`${apiUrl}/decrypt`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'x-api-key': API_KEY, // Adiciona a chave de API no cabeçalho
+                },
+                body: JSON.stringify({ encryptedData, keyName }),
+            })
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Erro ao descriptografar'); // Lança um erro se a resposta não for OK
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    document.getElementById('decryptedMessage').textContent = data.decryptedMessage;
+                })
+                .catch(error => {
+                    console.error('Erro ao descriptografar:', error);
+                    alert('Falha na descriptografia: verifique a mensagem e a chave.'); // Exibe o alerta
+                });
+        }
+
+    </script>
+
+</body>
+
+</html>
