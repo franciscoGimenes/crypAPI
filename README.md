@@ -89,6 +89,7 @@ fetch(`${apiUrl}/decrypt`, {
 ### Importando do Replit
 
 use a URL `https://7aa64dd7-8b85-4e40-8227-f6109fa9a47d-00-3he3e491624h2.riker.replit.dev` para o declarar a `APIurl`
+use a chave `abcdefg123456789` para declarar a `APIkey`
 
 ## Contribuições
 
